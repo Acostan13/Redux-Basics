@@ -27,7 +27,18 @@ const reducer = (state = initialState, action) => {
         case 'STORE_RESULT':
             return {
                 ...state,
-                results: state.results.concat({id: new Date(),value: state.counter})
+                results: state.results.concat({ id: new Date(), value: state.counter })
+            }
+        case 'DELETE_RESULT':
+            // const id = 2
+            // const newArr = [...state.results]
+            // newArr.splice(id, 1)
+
+            // Deleting elements immutably using filter()
+            const updatedArr = state.results.filter(result => result.id !== action.resultElId)
+            return {
+                ...state,
+                results: updatedArr
             }
         default:
     }
